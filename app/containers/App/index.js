@@ -14,7 +14,7 @@ import styled from 'styled-components';
 // import FeaturePage from 'containers/FeaturePage/Loadable';
 // import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
-import Footer from 'components/Footer';
+// import Footer from 'components/Footer';
 
 /**
  * Page Root 에 대한 스타일을 지정한다.
