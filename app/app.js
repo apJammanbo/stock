@@ -17,9 +17,6 @@ import createHistory from 'history/createBrowserHistory';
 // App Container 임포트
 import App from 'containers/App';
 
-// Language Provider 임포트
-import LanguageProvider from 'containers/LanguageProvider';
-
 // 파비콘과 매니페스트 파일을 불러온다.
 /* eslint-disable import/no-webpack-loader-syntax */
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
@@ -40,9 +37,6 @@ import '!file-loader?name=[name].[ext]!../data.json';
 
 import configureStore from './configureStore';
 
-// 다국어 지원을 위한 i18n messages
-import { translationMessages } from './i18n';
-
 // CSS reset과 기본 Styles
 import './global-styles';
 
@@ -62,43 +56,12 @@ const history = createHistory();
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
-const render = (messages) => {
-    ReactDOM.render(
-        <Provider store={store}>
-            <LanguageProvider messages={messages}>
-                <ConnectedRouter history={history}>
-                    <App />
-                </ConnectedRouter>
-            </LanguageProvider>
-        </Provider>,
-        MOUNT_NODE
-    );
-};
 
-if (module.hot) {
-    // Hot reloadable React components and translation json files
-    // modules.hot.accept does not accept dynamic dependencies,
-    // have to be constants at compile-time
-    module.hot.accept(['./i18n', 'containers/App'], () => {
-        ReactDOM.unmountComponentAtNode(MOUNT_NODE);
-        render(translationMessages);
-    });
-}
-
-// Intl 적용 체크
-if (!window.Intl) {
-    (new Promise((resolve) => {
-        resolve(import('intl'));
-    }))
-        .then(() => Promise.all([
-            import('intl/locale-data/jsonp/ko.js'),
-            import('intl/locale-data/jsonp/en.js'),
-        ]))
-        .then(() => render(translationMessages))
-        .catch((err) => {
-            throw err;
-        });
-} else {
-    render(translationMessages);
-}
-
+ReactDOM.render(
+    <Provider store={store}>
+        <ConnectedRouter history={history}>
+            <App />
+        </ConnectedRouter>
+    </Provider>,
+    MOUNT_NODE
+);
