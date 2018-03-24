@@ -17,8 +17,8 @@ describe('<NotFound />', () => {
     expect(renderedComponent.contains(
       <H1>
         <FormattedMessage
-          id="boilerplate.containers.NotFoundPage.header"
-          defaultMessage={'Page not found.'}
+          id="stock.containers.NotFoundPage.message"
+          defaultMessage={'페이지를 찾을 수 없습니다.'}
         />
       </H1>)).toEqual(true);
   });

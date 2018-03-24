@@ -1,29 +1,26 @@
 /**
  * app.js
- *
- * This is the entry file for the application, only setup and boilerplate
- * code.
+ * Frontend Entry Point 입니다.
  */
 
-// Needed for redux-saga es6 generator support
+// redux-saga es6 적용으로 필요
 import 'babel-polyfill';
 
-// Import all the third party stuff
+// 기본 라이브럴리 임포트
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
-import 'sanitize.css/sanitize.css';
 
-// Import root app
+// App Container 임포트
 import App from 'containers/App';
 
-// Import Language Provider
+// Language Provider 임포트
 import LanguageProvider from 'containers/LanguageProvider';
 
-// Load the favicon, the manifest.json file and the .htaccess file
+// 파비콘과 매니페스트 파일을 불러온다.
 /* eslint-disable import/no-webpack-loader-syntax */
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 import '!file-loader?name=[name].[ext]!./images/icon-72x72.png';
@@ -39,29 +36,27 @@ import '!file-loader?name=[name].[ext]!./images/icon-384x384.png';
 import '!file-loader?name=[name].[ext]!./images/icon-512x512.png';
 import '!file-loader?name=[name].[ext]!./manifest.json';
 import '!file-loader?name=[name].[ext]!../data.json';
-import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line import/extensions
 /* eslint-enable import/no-webpack-loader-syntax */
 
 import configureStore from './configureStore';
 
-// Import i18n messages
+// 다국어 지원을 위한 i18n messages
 import { translationMessages } from './i18n';
 
-// Import CSS reset and Global Styles
+// CSS reset과 기본 Styles
 import './global-styles';
 
-// Observe loading of Open Sans (to remove open sans, remove the <link> tag in
-// the index.html file and this observer)
+// 폰트 옵저버 임포트
 const openSansObserver = new FontFaceObserver('Open Sans', {});
 
-// When Open Sans is loaded, add a font-family using Open Sans to the body
+// 폰트가 로드 되면  body에 fontLoaded 클래스 적용
 openSansObserver.load().then(() => {
     document.body.classList.add('fontLoaded');
 }, () => {
     document.body.classList.remove('fontLoaded');
 });
 
-// Create redux store with history
+// history, store 생성
 const initialState = {};
 const history = createHistory();
 const store = configureStore(initialState, history);
@@ -90,14 +85,14 @@ if (module.hot) {
     });
 }
 
-// Chunked polyfill for browsers without Intl support
+// Intl 적용 체크
 if (!window.Intl) {
     (new Promise((resolve) => {
         resolve(import('intl'));
     }))
         .then(() => Promise.all([
+            import('intl/locale-data/jsonp/ko.js'),
             import('intl/locale-data/jsonp/en.js'),
-            import('intl/locale-data/jsonp/de.js'),
         ]))
         .then(() => render(translationMessages))
         .catch((err) => {
@@ -107,9 +102,3 @@ if (!window.Intl) {
     render(translationMessages);
 }
 
-// Install ServiceWorker and AppCache in the end since
-// it's not most important operation and if main code fails,
-// we do not want it installed
-if (process.env.NODE_ENV === 'production') {
-    require('offline-plugin/runtime').install(); // eslint-disable-line global-require
-}

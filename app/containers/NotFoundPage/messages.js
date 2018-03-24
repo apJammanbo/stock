@@ -6,8 +6,8 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  header: {
-    id: 'boilerplate.containers.NotFoundPage.header',
-    defaultMessage: 'Page not found.',
+  message: {
+    id: 'stock.containers.NotFoundPage.message',
+    defaultMessage: '페이지를 찾을 수 없습니다.',
   },
 });

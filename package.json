@@ -171,8 +171,7 @@
       "cross-env",
       "express",
       "ip",
-      "minimist",
-      "sanitize.css"
+      "minimist"
     ],
     "include": [
       "core-js",
@@ -237,7 +236,6 @@
     "redux-immutable": "4.0.0",
     "redux-saga": "0.15.3",
     "reselect": "3.0.1",
-    "sanitize.css": "4.1.0",
     "styled-components": "2.0.0",
     "warning": "3.0.0",
     "whatwg-fetch": "2.0.3"
@@ -283,7 +281,6 @@
     "ngrok": "2.2.9",
     "node-plop": "0.7.0",
     "null-loader": "0.1.1",
-    "offline-plugin": "4.8.1",
     "plop": "1.8.0",
     "pre-commit": "1.2.2",
     "react-test-renderer": "15.6.1",

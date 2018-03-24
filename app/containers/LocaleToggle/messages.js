@@ -6,12 +6,12 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  en: {
-    id: 'boilerplate.containers.LocaleToggle.en',
-    defaultMessage: 'en',
-  },
-  de: {
-    id: 'boilerplate.containers.LocaleToggle.de',
-    defaultMessage: 'de',
-  },
+    ko: {
+        id: 'stock.containers.LocaleToggle.ko',
+        defaultMessage: 'ko',
+    },
+    en: {
+        id: 'stock.containers.LocaleToggle.en',
+        defaultMessage: 'en',
+    },
 });
