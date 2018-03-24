@@ -9,8 +9,10 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
+
+import MainPage from '../MainPage/Loadable';
+import NotFoundPage from '../NotFoundPage/Loadable';
 
 /**
  * Page Root 에 대한 스타일을 지정한다.
@@ -34,6 +36,7 @@ export default function App() {
             </Helmet>
             <Header />
             <Switch>
+                <Route exact path="/" component={MainPage} />
                 <Route path="" component={NotFoundPage} />
             </Switch>
         </AppWrapper>
