@@ -156,3 +156,5 @@ cache/
 
 # Linux Auto Build Server File
 *.tmp
+
+build/
