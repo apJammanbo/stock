@@ -38,7 +38,8 @@ import '!file-loader?name=[name].[ext]!../data.json';
 import configureStore from './configureStore';
 
 // CSS reset과 기본 Styles
-import './global-styles';
+// import './global-styles';
+import './stock.css';
 
 // 폰트 옵저버 임포트
 const openSansObserver = new FontFaceObserver('Open Sans', {});
