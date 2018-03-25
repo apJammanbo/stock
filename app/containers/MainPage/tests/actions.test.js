@@ -1,19 +1,18 @@
 import {
-    CHANGE_TEST,
+    ADD_DATA_INDEX,
 } from '../constants';
 
 import {
-    testChange,
+    addDataIndex,
 } from '../actions';
 
-describe('Home Actions', () => {
-    describe('changeTest', () => {
-        it('should return the correct type', () => {
+describe('Main Actions', () => {
+    describe('ADD_DATA_INDEX', () => {
+        it('같은 타입의 결과여야 합니다.', () => {
             const expectedResult = {
-                type: CHANGE_TEST,
+                type: ADD_DATA_INDEX,
             };
-
-            expect(testChange()).toEqual(expectedResult);
+            expect(addDataIndex()).toEqual(expectedResult);
         });
     });
 });

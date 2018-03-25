@@ -2,4 +2,4 @@
  * Main Constant
  */
 
-export const CHANGE_TEST = 'stock/main/CHANGE_TEST';
+export const ADD_DATA_INDEX = 'stock/main/ADD_DATA_INDEX';

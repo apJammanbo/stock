@@ -4,18 +4,21 @@
 import { fromJS } from 'immutable';
 
 import {
-    CHANGE_TEST,
+    ADD_DATA_INDEX,
 } from './constants';
 
 // Init State MainPage
 const initialState = fromJS({
-    test: 0,
+    /**
+     * 다음 요청시 요청해야 할 데이터 인덱스 입니다.
+     */
+    dataIndex: 0,
 });
 
 function mainReducer(state = initialState, action) {
     switch (action.type) {
-        case CHANGE_TEST:
-            return state.set('test', state.get('test') + 1);
+        case ADD_DATA_INDEX:
+            return state.set('dataIndex', state.get('dataIndex') + 1);
         default:
             return state;
     }

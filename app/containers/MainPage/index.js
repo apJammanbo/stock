@@ -12,8 +12,8 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import reducer from './reducer';
 
-import { testChange } from './actions';
-import { makeSelectTest } from './selectors';
+import { addDataIndex } from './actions';
+import { makeSelectDataIndex } from './selectors';
 
 export class MainPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -21,6 +21,7 @@ export class MainPage extends React.PureComponent { // eslint-disable-line react
      * componentDidMount
      */
     componentDidMount() {
+        // 1초에 한번씩 데이터를 받아온다.
 
     }
 
@@ -59,12 +60,12 @@ MainPage.propTypes = {
 
 export function mapDispatchToProps(dispatch) {
     return {
-        onChangeTest: () => dispatch(testChange()),
+        onAddDataIndex: () => dispatch(addDataIndex()),
     };
 }
 
 const mapStateToProps = createStructuredSelector({
-    test: makeSelectTest(),
+    dataIndex: makeSelectDataIndex(),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

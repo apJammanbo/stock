@@ -2,13 +2,13 @@ import { fromJS } from 'immutable';
 
 import {
     selectMain,
-    makeSelectTest,
+    makeSelectDataIndex,
 } from '../selectors';
 
 describe('selectMain', () => {
     it('should select the Main state', () => {
         const mainState = fromJS({
-            test: 0,
+            dataIndex: 0,
         });
         const mockedState = fromJS({
             main: mainState,
@@ -18,14 +18,14 @@ describe('selectMain', () => {
 });
 
 describe('makeSelectTest', () => {
-    const testSelector = makeSelectTest();
+    const selecter = makeSelectDataIndex();
     it('should select the username', () => {
-        const test = 3;
+        const dataIndex = 3;
         const mockedState = fromJS({
             main: {
-                test,
+                dataIndex,
             },
         });
-        expect(testSelector(mockedState)).toEqual(test);
+        expect(selecter(mockedState)).toEqual(dataIndex);
     });
 });

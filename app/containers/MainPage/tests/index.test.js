@@ -1,10 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { MainPage, mapDispatchToProps } from '../index';
-import { testChange } from '../actions';
+import { addDataIndex } from '../actions';
 
 describe('<MainPage />', () => {
-    it('should render div', () => {
+    // Render Test
+    it('<MainPage/> 는 <div/> 를 렌더링 합니다.', () => {
         const renderedComponent = shallow(
             <MainPage />
         );
@@ -12,19 +13,20 @@ describe('<MainPage />', () => {
     });
 });
 
-describe('mapDispatchToProps', () => {
-    describe('onChangeTest', () => {
-        it('should be injected', () => {
+describe('<MainPge /> mapDispatchToProps', () => {
+    // onAddDataIndex Test
+    describe('Test onAddDataIndex', () => {
+        it('onAddDataIndex가 있어야 합니다.', () => {
             const dispatch = jest.fn();
             const result = mapDispatchToProps(dispatch);
-            expect(result.onChangeTest).toBeDefined();
+            expect(result.onAddDataIndex).toBeDefined();
         });
 
-        it('should dispatch changeTest when called', () => {
+        it('onAddDataIndex가 호출되면 addDataIndex가 호출되어야 합니다.', () => {
             const dispatch = jest.fn();
             const result = mapDispatchToProps(dispatch);
-            result.onChangeTest();
-            expect(dispatch).toHaveBeenCalledWith(testChange());
+            result.onAddDataIndex();
+            expect(dispatch).toHaveBeenCalledWith(addDataIndex());
         });
     });
 });

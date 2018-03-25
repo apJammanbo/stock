@@ -2,24 +2,24 @@ import { fromJS } from 'immutable';
 
 import mainReducer from '../reducer';
 import {
-    testChange,
+    addDataIndex,
 } from '../actions';
 
 describe('MainReducer', () => {
     let state;
     beforeEach(() => {
         state = fromJS({
-            test: 0,
+            dataIndex: 0,
         });
     });
 
-    it('should return the initial state', () => {
+    it('initial state 확인', () => {
         const expectedResult = state;
         expect(mainReducer(undefined, {})).toEqual(expectedResult);
     });
 
-    it('should handle the testChange action correctly', () => {
-        const expectedResult = state.set('test', 1);
-        expect(mainReducer(state, testChange())).toEqual(expectedResult);
+    it('addDataIndex 결과값 테스트 ', () => {
+        const expectedResult = state.set('dataIndex', 1);
+        expect(mainReducer(state, addDataIndex())).toEqual(expectedResult);
     });
 });

@@ -3,14 +3,14 @@
  */
 
 import {
-    CHANGE_TEST,
+    ADD_DATA_INDEX,
 } from './constants';
 
 /**
  * @return {object}
  */
-export function testChange() {
+export function addDataIndex() {
     return {
-        type: CHANGE_TEST,
+        type: ADD_DATA_INDEX,
     };
 }
