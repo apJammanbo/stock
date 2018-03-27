@@ -21,7 +21,7 @@ class Chart extends React.Component { // eslint-disable-line react/prefer-statel
                         <h2>챠트</h2>
                     </div>
                     <div className="sec_content chart_bx">
-                        <ResponsiveContainer height={120}>
+                        <ResponsiveContainer height={100}>
                             <LineChart
                                 data={tradedData.toJS()}
                                 margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
@@ -34,7 +34,7 @@ class Chart extends React.Component { // eslint-disable-line react/prefer-statel
                             </LineChart>
                         </ResponsiveContainer>
 
-                        <ResponsiveContainer height={110}>
+                        <ResponsiveContainer height={100}>
                             <BarChart
                                 data={tradedData.toJS()}
                                 margin={{ top: 5, right: 30, left: 20, bottom: 5 }}

@@ -14,7 +14,7 @@ class Bidding extends React.Component { // eslint-disable-line react/prefer-stat
     constructor() {
         super();
         this.state = {
-            showCount: 4,
+            showCount: 5,
         };
     }
 
@@ -22,10 +22,10 @@ class Bidding extends React.Component { // eslint-disable-line react/prefer-stat
      * 보여주는 호가창 갯수를 토글한다.
      */
     handleToggleShowCount = () => {
-        if (this.state.showCount === 4) {
-            this.setState({ showCount: 6 });
+        if (this.state.showCount === 5) {
+            this.setState({ showCount: 7 });
         } else {
-            this.setState({ showCount: 4 });
+            this.setState({ showCount: 5 });
         }
     }
 

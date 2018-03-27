@@ -19,7 +19,7 @@ class BiddingHeader extends React.Component { // eslint-disable-line react/prefe
                     type="button"
                     className="btn_quotes"
                 >
-                    {showCount === 6 ? '4호가' : '6호가'}
+                    {showCount === 7 ? '5호가' : '7호가'}
                 </button>
             </div>
         );

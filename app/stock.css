@@ -145,7 +145,7 @@ footer strong{color:#848484;font-size:12px;font-weight:normal;line-height:27px;}
 .tbl_mini_order{position:absolute;top:0;bottom:0;left:0;right:0;}
 .tbl_mini_order th{padding:10px 10px 9px;background-color:#f7f7f7;border-bottom:1px solid #e5e5e5;}
 .tbl_mini_order th:first-child:after{position:absolute;top:30%;bottom:30%;right:0;width:1px;background-color:#e0e0e0;content:'';}
-.tbl_mini_order td{padding:6px 3px;border:0;font-size:12px;}
+.tbl_mini_order td{padding:5px 3px;border:0;font-size:12px;}
 
 .stock_info dl{padding:8px 0;border-bottom:1px solid #e5e5e5;}
 .stock_info dl:after{display:block;clear:both;content:'';}
