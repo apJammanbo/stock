@@ -1,18 +1,26 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { fromJS } from 'immutable';
+import { List } from 'immutable';
 import { MainPage, mapDispatchToProps } from '../index';
 import {
     addDataIndex,
     addNewData,
 } from '../actions';
 
+const props = {
+    dataIndex: 0,
+    buyData: List([]),
+    sellData: List([]),
+    startPrice: 100,
+    tradedData: List([]),
+};
+
 // Render Test
 describe('<MainPage />', () => {
     // Render Test
     it('<MainPage/> 는 <div/> 를 렌더링 합니다.', () => {
         const renderedComponent = shallow(
-            <MainPage dataIndex={0} data={fromJS([])} />
+            <MainPage {...props} />
         );
         expect(renderedComponent.type()).toEqual('div');
     });
@@ -23,7 +31,7 @@ describe('<MainPage /> Functions', () => {
     describe('componentDidMount', () => {
         it('componentDidMount 가 있어야 합니다.', () => {
             const renderedComponent = shallow(
-                <MainPage dataIndex={0} data={fromJS([])} />
+                <MainPage {...props} />
             );
             expect(renderedComponent.instance().componentDidMount).toBeDefined();
         });
@@ -32,7 +40,7 @@ describe('<MainPage /> Functions', () => {
     describe('handleGetNewData', () => {
         it('handleGetNewData 가 있어야 합니다.', () => {
             const renderedComponent = shallow(
-                <MainPage dataIndex={0} data={fromJS([])} />
+                <MainPage {...props} />
             );
             expect(renderedComponent.instance().handleGetNewData).toBeDefined();
         });

@@ -9,8 +9,8 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
-import Header from 'components/Header';
 
+import Header from '../../components/Header';
 import MainPage from '../MainPage/Loadable';
 import NotFoundPage from '../NotFoundPage/Loadable';
 

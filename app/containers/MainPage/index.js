@@ -20,8 +20,17 @@ import {
 } from './actions';
 import {
     makeSelectDataIndex,
-    makeSelectData,
+    makeSelectBuyData,
+    makeSelectSellData,
+    makeSelectStartPrice,
+    makeSelectTradedData,
 } from './selectors';
+
+// 컴포넌트 로드
+import Information from '../../components/Information';
+import Bidding from '../../components/Bidding';
+import Chart from '../../components/Chart';
+
 
 export class MainPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -46,12 +55,52 @@ export class MainPage extends React.PureComponent { // eslint-disable-line react
      * render
      */
     render() {
-        console.log(this.props.data);
+        const {
+            buyData,
+            sellData,
+            startPrice,
+            tradedData,
+        } = this.props;
+
+        // 거래데이터
+        const biddingInfo = {
+            startPrice,
+            totalTrade: 0,
+            sumTradePrice: 0,
+            maxPrice: 0,
+            minPrice: 0,
+        };
+
+        // 현재가
+        biddingInfo.currentTradeData = tradedData.size > 0 ? tradedData.getIn([tradedData.size - 1, 'price']) : null;
+
+        tradedData.forEach((item, index) => {
+            if (index === 0) {
+                biddingInfo.minPrice = item.get('price');
+            }
+            biddingInfo.totalTrade += item.get('quantity');
+            biddingInfo.sumTradePrice += (item.get('price') * item.get('quantity'));
+            biddingInfo.maxPrice = Math.max(biddingInfo.maxPrice, item.get('price'));
+            biddingInfo.minPrice = Math.min(biddingInfo.minPrice, item.get('price'));
+        });
+
         return (
             <div className="container">
                 <Helmet>
                     <title>Stock</title>
                 </Helmet>
+                <div className="content">
+                    <Information
+                        biddingInfo={biddingInfo}
+                    />
+                    <Bidding
+                        biddingInfo={biddingInfo}
+                        buyData={buyData}
+                        sellData={sellData}
+                        tradedData={tradedData}
+                    />
+                    <Chart />
+                </div>
             </div>
         );
     }
@@ -63,13 +112,25 @@ MainPage.propTypes = {
      */
     dataIndex: PropTypes.number.isRequired,
     /**
-     * 주식데이터 입니다.
+     * 매수 데이터(B)
      */
-    data: ImmutablePropTypes.list,
+    buyData: ImmutablePropTypes.list,
+    /**
+     * 매도 데이터(S)
+     */
+    sellData: ImmutablePropTypes.list,
     /**
      * 새로운 데이터를 추가하는 액션입니다.
      */
     onAddNewData: PropTypes.func,
+    /**
+     * 시작가
+     */
+    startPrice: PropTypes.number,
+    /**
+     * 거래 성사 데이터
+     */
+    tradedData: ImmutablePropTypes.list,
 };
 
 export function mapDispatchToProps(dispatch) {
@@ -82,7 +143,10 @@ export function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
     dataIndex: makeSelectDataIndex(),
-    data: makeSelectData(),
+    buyData: makeSelectBuyData(),
+    sellData: makeSelectSellData(),
+    startPrice: makeSelectStartPrice(),
+    tradedData: makeSelectTradedData(),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

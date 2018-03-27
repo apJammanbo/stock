@@ -14,8 +14,8 @@ export class StockApi {
                     const data = response.data.data.split('\t');
                     const ret = {
                         type: data[0],
-                        amount: data[1],
-                        quantity: data[2],
+                        price: Number(data[1]),
+                        quantity: Number(data[2]),
                         datetime: Date.now(),
                     };
                     return fromJS(ret);
