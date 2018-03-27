@@ -29,8 +29,8 @@ export default function App() {
     return (
         <AppWrapper>
             <Helmet
-                titleTemplate="%s - 타이틀입니다."
-                defaultTitle="타이틀입니다."
+                titleTemplate="%s - KakaoPay"
+                defaultTitle="Stock"
             >
                 <meta name="description" content="A React.js Boilerplate application" />
             </Helmet>

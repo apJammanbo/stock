@@ -155,3 +155,19 @@ footer strong{color:#848484;font-size:12px;font-weight:normal;line-height:27px;}
 .stock_info dt{width:40%;clear:both;color:#777;}
 .stock_info dd{width:60%;text-align:right;}
 .stock_info dd .mark{color:#afafaf;}
+
+.LS_loader{position:relative;display:inline-block;vertical-align:top;font-size:18px}
+.LS_loader .loader_bx{text-align:center}
+.LS_loader .loader_txt{margin-top:20px;font-size:16px;color:#ffc700}
+.LS_loader .loading-bar{display:inline-block;width:10px;height:30px;animation:LSloader 1s ease-in-out infinite;background-color:#ffc700}
+.LS_loader .loading-bar+.loading-bar{margin-left:3px}
+.LS_loader .loading-bar:nth-child(1){animation-delay:0}
+.LS_loader .loading-bar:nth-child(2){animation-delay:90ms}
+.LS_loader .loading-bar:nth-child(3){animation-delay:.18s}
+.LS_loader .loading-bar:nth-child(4){animation-delay:.27s}
+.LS_loader .loading-bar:nth-child(5){animation-delay:.36s}
+@keyframes LSloader{
+    0%{transform:scale(1)}
+    20%{transform:scale(1,2.5)}
+    40%{transform:scale(1)}
+}
