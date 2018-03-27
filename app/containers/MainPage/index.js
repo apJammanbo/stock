@@ -99,7 +99,9 @@ export class MainPage extends React.PureComponent { // eslint-disable-line react
                         sellData={sellData}
                         tradedData={tradedData}
                     />
-                    <Chart />
+                    <Chart
+                        tradedData={tradedData}
+                    />
                 </div>
             </div>
         );

@@ -5,17 +5,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import H1 from 'components/H1';
 import NotFound from '../index';
 
+// Render NotFound
 describe('<NotFound />', () => {
-    it('should render the Page Not Found text', () => {
+    // Render Test
+    it('<NotFound/> 는 <div/> 를 렌더링 합니다.', () => {
         const renderedComponent = shallow(
             <NotFound />
         );
-        expect(renderedComponent.contains(
-            <H1>
-                페이지를 찾을 수 없습니다.
-            </H1>)).toEqual(true);
+        expect(renderedComponent.type()).toEqual('div');
     });
 });

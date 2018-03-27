@@ -1,11 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Infomation from '../index';
+import { List } from 'immutable';
+import Chart from '../index';
 
-describe('<Infomation />', () => {
-    it('<Infomation/> 는 <div/> 를 렌더링 합니다.', () => {
+const props = {
+    tradedData: List([]),
+};
+
+describe('<Chart />', () => {
+    it('<Chart/> 는 <div/> 를 렌더링 합니다.', () => {
         const renderedComponent = shallow(
-            <Infomation />
+            <Chart {...props} />
         );
         expect(renderedComponent.type()).toEqual('div');
     });
