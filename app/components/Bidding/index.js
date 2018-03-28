@@ -29,31 +29,11 @@ class Bidding extends React.Component { // eslint-disable-line react/prefer-stat
         }
     }
 
-
-    render() {
-        const {
-            buyData,
-            sellData,
-            tradedData,
-            biddingInfo,
-        } = this.props;
-
-        const {
-            showCount,
-        } = this.state;
-
-        let maxBuyQuantity = 0;
-        buyData.forEach((item) => {
-            maxBuyQuantity = Math.max(maxBuyQuantity, item.get('quantity'));
-        });
-
-        let maxSellQuantity = 0;
-        sellData.forEach((item) => {
-            maxSellQuantity = Math.max(maxSellQuantity, item.get('quantity'));
-        });
-
+    /**
+     * 매도 tr 생성
+     */
+    createSellTrs = (showCount, sellData, biddingInfo, maxSellQuantity) => {
         const sellTrs = [];
-
         for (let i = 0; i < showCount; i += 1) {
             const data = sellData.get(showCount - i - 1);
 
@@ -109,7 +89,13 @@ class Bidding extends React.Component { // eslint-disable-line react/prefer-stat
                 </tr>
             );
         }
+        return sellTrs;
+    }
 
+    /**
+     * 매수 tr 생성
+     */
+    createBuyTrs = (showCount, buyData, biddingInfo, maxBuyQuantity, tradedData) => {
         const buyTrs = [];
         for (let i = 0; i < showCount; i += 1) {
             const data = buyData.get(i);
@@ -165,6 +151,35 @@ class Bidding extends React.Component { // eslint-disable-line react/prefer-stat
                 </tr>
             );
         }
+        return buyTrs;
+    }
+    /**
+     * render
+     */
+    render() {
+        const {
+            buyData,
+            sellData,
+            tradedData,
+            biddingInfo,
+        } = this.props;
+
+        const {
+            showCount,
+        } = this.state;
+
+        let maxBuyQuantity = 0;
+        buyData.forEach((item) => {
+            maxBuyQuantity = Math.max(maxBuyQuantity, item.get('quantity'));
+        });
+
+        let maxSellQuantity = 0;
+        sellData.forEach((item) => {
+            maxSellQuantity = Math.max(maxSellQuantity, item.get('quantity'));
+        });
+
+        const sellTrs = this.createSellTrs(showCount, sellData, biddingInfo, maxSellQuantity);
+        const buyTrs = this.createBuyTrs(showCount, buyData, biddingInfo, maxBuyQuantity, tradedData);
 
         return (
             <div className="sec">

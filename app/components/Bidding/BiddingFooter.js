@@ -6,21 +6,27 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class BiddingFooter extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+    // 리스트에서 수량의 합계를 구한다.
+    sumQuantity = (list) => {
+        let sum = 0;
+        list.forEach((item) => {
+            sum += item.get('quantity');
+        });
+        return sum;
+    }
+
+    /**
+     * Render
+     */
     render() {
         const {
             buyData,
             sellData,
         } = this.props;
 
-        let sumBuyData = 0;
-        buyData.forEach((item) => {
-            sumBuyData += item.get('quantity');
-        });
-
-        let sumSellData = 0;
-        sellData.forEach((item) => {
-            sumSellData += item.get('quantity');
-        });
+        const sumBuyData = this.sumQuantity(buyData);
+        const sumSellData = this.sumQuantity(sellData);
 
         return (
             <table className="tbl_sum">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { List } from 'immutable';
+import { fromJS, List } from 'immutable';
 import { MainPage, mapDispatchToProps } from '../index';
 import {
     addDataIndex,
@@ -15,13 +15,16 @@ const props = {
     tradedData: List([]),
 };
 
+const renderedComponent = shallow(
+    <MainPage {...props} />
+);
+
+const instance = renderedComponent.instance();
+
 // Render Test
 describe('<MainPage />', () => {
     // Render Test
     it('<MainPage/> 는 <div/> 를 렌더링 합니다.', () => {
-        const renderedComponent = shallow(
-            <MainPage {...props} />
-        );
         expect(renderedComponent.type()).toEqual('div');
     });
 });
@@ -30,19 +33,35 @@ describe('<MainPage />', () => {
 describe('<MainPage /> Functions', () => {
     describe('componentDidMount', () => {
         it('componentDidMount 가 있어야 합니다.', () => {
-            const renderedComponent = shallow(
-                <MainPage {...props} />
-            );
-            expect(renderedComponent.instance().componentDidMount).toBeDefined();
+            expect(instance.componentDidMount).toBeDefined();
         });
     });
 
     describe('handleGetNewData', () => {
         it('handleGetNewData 가 있어야 합니다.', () => {
-            const renderedComponent = shallow(
-                <MainPage {...props} />
-            );
-            expect(renderedComponent.instance().handleGetNewData).toBeDefined();
+            expect(instance.handleGetNewData).toBeDefined();
+        });
+    });
+
+    describe('createBiddingInfo', () => {
+        it('createBiddingInfo 가 있어야 합니다.', () => {
+            expect(instance.createBiddingInfo).toBeDefined();
+        });
+
+        it('createBiddingInfo 결과값', () => {
+            const tradeData = fromJS([
+                { price: 1000, quantity: 100 },
+                { price: 500, quantity: 50 },
+            ]);
+            const expectedResult = {
+                currentTradeData: 500,
+                maxPrice: 1000,
+                minPrice: 500,
+                startPrice: 1000,
+                sumTradePrice: 125000,
+                totalTrade: 150,
+            };
+            expect(instance.createBiddingInfo(1000, tradeData)).toEqual(expectedResult);
         });
     });
 });

@@ -50,18 +50,10 @@ export class MainPage extends React.PureComponent { // eslint-disable-line react
             .then((data) => this.props.onAddNewData(data));
     }
 
-
     /**
-     * render
+     * BiddingInfo 생성
      */
-    render() {
-        const {
-            buyData,
-            sellData,
-            startPrice,
-            tradedData,
-        } = this.props;
-
+    createBiddingInfo = (startPrice, tradedData) => {
         // 거래데이터
         const biddingInfo = {
             startPrice,
@@ -83,6 +75,23 @@ export class MainPage extends React.PureComponent { // eslint-disable-line react
             biddingInfo.maxPrice = Math.max(biddingInfo.maxPrice, item.get('price'));
             biddingInfo.minPrice = Math.min(biddingInfo.minPrice, item.get('price'));
         });
+
+        return biddingInfo;
+    }
+
+    /**
+     * render
+     */
+    render() {
+        const {
+            buyData,
+            sellData,
+            startPrice,
+            tradedData,
+        } = this.props;
+
+        // 거래데이터
+        const biddingInfo = this.createBiddingInfo(startPrice, tradedData);
 
         return (
             <div className="container">

@@ -7,11 +7,10 @@ import PropTypes from 'prop-types';
 import { numberWithCommas } from '../../utils/common';
 
 class Information extends React.Component { // eslint-disable-line react/prefer-stateless-function
-    render() {
-        const {
-            biddingInfo,
-        } = this.props;
-
+    /**
+     * color, arrow, ratio 결정
+     */
+    getInfo = (biddingInfo) => {
         let color = 'color_white';
         let ratio = '';
         let arrow = '';
@@ -28,6 +27,26 @@ class Information extends React.Component { // eslint-disable-line react/prefer-
 
             ratio = ((biddingInfo.currentTradeData - biddingInfo.startPrice) / biddingInfo.startPrice).toFixed(4);
         }
+        return {
+            color,
+            arrow,
+            ratio,
+        };
+    }
+
+    /**
+     * render
+     */
+    render() {
+        const {
+            biddingInfo,
+        } = this.props;
+
+        const {
+            color,
+            arrow,
+            ratio,
+        } = this.getInfo(biddingInfo);
 
         return (
             <div className="sec">
