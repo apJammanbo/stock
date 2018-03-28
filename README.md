@@ -10,9 +10,11 @@
   `npm run start:production`
  * Build
   `npm run build`
-  * Test
+ * Start(Production)
+  `npm run start:prod`
+ * Test
   `npm run test`
-  * Lint
+ * Lint
   `npm run lint`
 
 ## 문제해결전략
