@@ -10,7 +10,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
             <header>
                 <div className="content">
                     <h1>
-                        <a href="/" className="logo"><img src="logo.png" alt="카카오페이" /></a>
+                        {/*<a href="/" className="logo"><img src="logo.png" alt="카카오페이" /></a>*/}
                     </h1>
                     <div className="popover_bx">
                         <button type="button" className="hamberger">
